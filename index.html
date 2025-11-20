@@ -20,12 +20,15 @@
     padding: 10px 20px;
   }
 
-  .top-bar img {
-    height: 60px; /* 左端ロゴ */
+  /* 左端ロゴ（高さ50px） */
+  .top-logo {
+    height: 50px;
+    cursor: pointer;
   }
 
+  /* メニュー画像（高さ150px） */
   .menu-img {
-    height: 100px; /* メニュー画像 */
+    height: 150px;
     cursor: pointer;
   }
 
@@ -49,98 +52,4 @@
     display: block;
     width: 80%;
     margin: 12px auto;
-    padding: 14px;
-    background: #2196F3;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 8px;
-    font-size: 17px;
-  }
-
-  .menu-button:hover {
-    background: #1976D2;
-  }
-
-  .ste-btn {
-    display: block;
-    width: 70%;
-    margin: 20px auto;
-    padding: 14px;
-    background: #2196F3;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 8px;
-    font-size: 16px;
-  }
-
-</style>
-</head>
-<body>
-
-<!-- ▼ ヘッダー（ロゴ + メニュー画像） -->
-<div class="top-bar">
-
-  <!-- 左端ロゴ -->
-  <a href="./">
-    <img src="images/neon_rogo_solo.png" alt="Neonロゴ">
-  </a>
-
-  <!-- TOP -->
-  <a href="./">
-    <img src="images/TOP textlogo.png" class="menu-img" alt="TOP">
-  </a>
-
-  <span class="menu-separator">｜</span>
-
-  <!-- 特殊 -->
-  <a href="special/">
-    <img src="images/special textlogo.png" class="menu-img" alt="特殊">
-  </a>
-
-  <span class="menu-separator">｜</span>
-
-  <!-- アイテム -->
-  <a href="items/">
-    <img src="images/item textlogo.png" class="menu-img" alt="アイテム">
-  </a>
-
-  <span class="menu-separator">｜</span>
-
-  <!-- 敵対 -->
-  <a href="enemy/">
-    <img src="images/enemy textlogo.png" class="menu-img" alt="敵対">
-  </a>
-
-  <span class="menu-separator">｜</span>
-
-  <!-- 友好 -->
-  <a href="friendly/">
-    <img src="images/friendly textlogo.png" class="menu-img" alt="友好">
-  </a>
-</div>
-
-<!-- ▼ 中央メインコンテンツ -->
-<div class="container">
-
-  <!-- タイトル画像 -->
-  <img src="images/command list.png" alt="コマンドリスト" style="height:150px; margin-bottom:20px;">
-
-  <p>使いたいコマンドのページへ移動してください</p>
-
-  <a href="enemy/" class="menu-button">敵対コマンド</a>
-  <a href="special/" class="menu-button">特殊コマンド</a>
-  <a href="items/" class="menu-button">アイテムコマンド</a>
-  <a href="friendly/" class="menu-button">友好MOBコマンド</a>
-
-  <p style="margin-top:25px; opacity:0.8;">
-    その他のプラグインコマンドは<br>
-    Stream to Earn のサイトにて確認できます
-  </p>
-
-  <a href="https://streamtoearn.io/" class="ste-btn" target="_blank">
-    Stream to Earn 公式サイト
-  </a>
-</div>
-
-</body>
-</html>
+    padd
