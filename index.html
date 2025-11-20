@@ -5,22 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>マイクラコマンド集TOP</title>
 <link rel="stylesheet" href="style.css">
+
 <style>
-  /* ===== 共通ヘッダー ===== */
+  /* ▼ 共通ヘッダー ▼ */
   .header {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 16px;
     margin: 20px;
   }
   .logo-main { height: 50px; }
   .logo-small { height: 40px; }
 
-  .navbar a {
-    margin-right: 8px;
-    text-decoration: none;
-    color: #2196F3;
-    font-weight: bold;
+  .navbar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .navbar a { text-decoration: none; }
+
+  /* ▼ ページ全体 ▼ */
+  body {
+    font-family: "Noto Sans JP", sans-serif;
   }
 
   .container {
@@ -28,14 +34,15 @@
     margin: 40px auto;
     text-align: center;
   }
+
   .card {
     background: #fff;
     padding: 30px 20px;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    margin-bottom: 20px;
   }
-  a.button {
+
+  .button {
     display: block;
     text-decoration: none;
     background-color: #2196F3;
@@ -50,23 +57,41 @@
 
 <body>
 
-<!-- ▼ 共通ヘッダー -->
+<!-- ▼ ヘッダー（画像メニュー） -->
 <div class="header">
-  <img src="images/TOP textlogo.png" class="logo-main" alt="TOP">
+
+  <!-- 左端 50pxロゴ -->
+  <img src="images/neon_rogo1_VCMYK.png" class="logo-main" alt="ロゴ">
+
+  <!-- メニュー（40px画像 ×5） -->
   <nav class="navbar">
-    <a href="./">TOP</a>｜
-    <img src="images/special textlogo.png" class="logo-small"> <a href="special/">特殊</a>｜
-    <img src="images/item textlogo.png" class="logo-small"> <a href="items/">アイテム</a>｜
-    <img src="images/enemy textlogo.png" class="logo-small"> <a href="enemy/">敵対</a>｜
-    <img src="images/friendly textlogo.png" class="logo-small"> <a href="friendly/">友好</a>
+
+    <a href="./">
+      <img src="images/TOP textlogo.png" class="logo-small" alt="TOP">
+    </a> ｜
+    <a href="special/">
+      <img src="images/special textlogo.png" class="logo-small" alt="特殊">
+    </a> ｜
+    <a href="items/">
+      <img src="images/item textlogo.png" class="logo-small" alt="アイテム">
+    </a> ｜
+    <a href="enemy/">
+      <img src="images/enemy textlogo.png" class="logo-small" alt="敵対">
+    </a> ｜
+    <a href="friendly/">
+      <img src="images/friendly textlogo.png" class="logo-small" alt="友好">
+    </a>
+
   </nav>
 </div>
-<!-- ▲ 共通ヘッダー -->
 
+<!-- ▼ TOPページ本体 -->
 <div class="container">
   <div class="card">
+
     <h1>マイクラ コマンド集</h1>
-    <img src="images/neon_rogo1_VCMYK.png" class="logo-main" style="display:block;margin:0 auto">
+
+    <img src="images/neon_rogo1_VCMYK.png" style="width:250px; margin:20px auto; display:block;">
 
     <p>使いたいコマンドのページへ移動してください</p>
 
@@ -75,8 +100,15 @@
     <a href="items/" class="button">アイテムコマンド</a>
     <a href="friendly/" class="button">友好MOBコマンド</a>
 
-    <p>その他のプラグインコマンドは<br>Stream to Earn 公式サイトへ</p>
-    <a href="https://streamtoearn.io/" class="button" target="_blank">Stream to Earn</a>
+    <p style="margin-top:20px; opacity:0.8;">
+      その他のプラグインのコマンドは<br>
+      Stream to Earn のサイトにて確認できます
+    </p>
+
+    <a class="button" href="https://streamtoearn.io/" target="_blank">
+      Stream to Earn 公式サイト
+    </a>
+
   </div>
 </div>
 
