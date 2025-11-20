@@ -53,10 +53,10 @@
     margin-bottom: 20px;
   }
   .title-logo-small {
-    height: 50px;
+    height: 50px; /* sleep.png */
   }
   .title-logo-big {
-    height: 100px; 
+    height: 180px; /* textlogo */
   }
 
   select, input[type=number] {
@@ -92,9 +92,9 @@
     background: #f3f3f3;
     padding: 10px;
     border-radius: 6px;
-    overflow-x: auto;
     white-space: pre-wrap;
     word-break: break-word;
+    overflow-x: auto;
     margin-top: 10px;
   }
 </style>
@@ -125,6 +125,7 @@
   <label>アイテムを選択：</label>
   <select id="itemSelect" onchange="toggleAmount()">
     <option value="">選択してください</option>
+
     <option value="golden_apple">金のリンゴ</option>
     <option value="oak_log">オークの原木</option>
 
