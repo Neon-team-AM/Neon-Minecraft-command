@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>その他のコマンド</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    max-width: 600px;
+    margin: 20px auto;
+  }
+  select {
+    width: 100%;
+    margin: 10px 0;
+    padding: 8px;
+    font-size: 15px;
+  }
+  button.button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: none;
+    background-color: #2196F3;
+    color: #fff;
+    cursor: pointer;
+  }
+  .copy-btn {
+    background: #4CAF50;
+    color: #fff;
+    padding: 8px 14px;
+    border: none;
+    margin-top: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+  <a href="index.html">⚡特殊コマンド</a>
+  <a href="items.html">🎁アイテム</a>
+  <a href="hostile.html">👿敵対MOB</a>
+  <a href="friendly.html">🐑友好MOB</a>
+</div>
+
+<div class="container">
+
+<div class="card">
+  <h1>💻その他のコマンド(特殊系)</h1>
+
+  <label>コマンドを選択：</label>
+  <select id="commandSelect">
+    <option value="">選択してください</option>
+    <option value="fill_air">落とし穴</option>
+    <option value="set_lava">プレイヤー頭上にマグマ設置</option>
+    <option value="summon_lightning">雷を召喚</option>
+    <option value="kill_mobs">敵対Mobをキル</option>
+<option value="tnt_set">TNT設置＆召喚（プレイヤー指定）</option>
+
+  </select>
+
+  <button class="button" onclick="generateCommand()">コマンド生成</button>
+
+  <pre class="command-output" id="output"></pre>
+  <button class="copy-btn" onclick="copyCommand()">コピー</button>
+</div>
+
+</div>
+
+<script>
+function generateCommand() {
+  const cmdType = document.getElementById("commandSelect").value;
+  let cmd = "";
+
+  switch(cmdType){
+    case "fill_air":
+      cmd = `/execute as @p at @p run fill ~-1 ~-2 ~-1 ~1 ~-1 ~1 minecraft:air replace`;
+      break;
+    case "set_lava":
+      cmd = `/execute at @p run setblock ~ ~2 ~ lava`;
+      break;
+    case "summon_lightning":
+      cmd = `/execute at @p run summon lightning_bolt ~ ~ ~`;
+      break;
+    case "kill_mobs":
+      cmd = `/kill @e[type=!player,type=!wither,type=!warden,type=!ender_dragon,type=!item]`;
+      break;
+case "tnt_set":
+  cmd = `execute as {playername} at @s run fill ~-2 ~-3 ~-2 ~2 ~-1 ~2 minecraft:tnt[unstable=true] replace\n`;
+  cmd += `execute as {playername} at @s run summon tnt ~ ~ ~ {fuse:20}`;
+  break;
+      break;
+    default:
+      cmd = "コマンドを選択してください。";
+  }
+
+  document.getElementById("output").textContent = cmd;
+}
+
+function copyCommand(){
+  const text = document.getElementById("output").textContent;
+  navigator.clipboard.writeText(text);
+}
+</script>
+
+</body>
+</html>

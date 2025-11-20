@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>アイテム</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    max-width: 600px;
+    margin: 20px auto;
+  }
+  select, input[type=number] {
+    width: 100%;
+    margin: 10px 0;
+    padding: 8px;
+    font-size: 15px;
+  }
+  button.button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: none;
+    background-color: #2196F3;
+    color: #fff;
+    cursor: pointer;
+  }
+  .copy-btn {
+    background: #4CAF50;
+    color: #fff;
+    padding: 8px 14px;
+    border: none;
+    margin-top: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+  <a href="index.html">⚡特殊コマンド</a>
+  <a href="items.html">🎁アイテム</a>
+  <a href="hostile.html">👿敵対MOB</a>
+  <a href="friendly.html">🐑友好MOB</a>
+</div>
+
+<div class="container">
+
+<div class="card">
+  <h1>🎁アイテム付与</h1>
+
+  <label>アイテムを選択：</label>
+  <select id="itemSelect" onchange="toggleAmount()">
+    <option value="">選択してください</option>
+
+    <option value="golden_apple">金のリンゴ</option>
+    <option value="oak_log">オークの原木</option>
+
+    <option value="iron_shovel">鉄のシャベル</option>
+    <option value="iron_sword">鉄の剣</option>
+    <option value="iron_axe">鉄の斧</option>
+    <option value="iron_pickaxe">鉄のツルハシ</option>
+
+    <option value="diamond_sword">ダイヤの剣</option>
+    <option value="diamond_shovel">ダイヤのシャベル</option>
+    <option value="diamond_axe">ダイヤの斧</option>
+    <option value="diamond_pickaxe">ダイヤのツルハシ</option>
+
+    <option value="bone">骨</option>
+    <option value="iron_ingot">鉄インゴット</option>
+
+    <option value="diamond_helmet">ダイヤ防具：頭</option>
+    <option value="diamond_chestplate">ダイヤ防具：胴</option>
+    <option value="diamond_leggings">ダイヤ防具：脚</option>
+    <option value="diamond_boots">ダイヤ防具：足</option>
+
+    <option value="wheat_seeds">小麦の種</option>
+  </select>
+
+  <div id="amountBox" style="display:none;">
+    <label>個数：</label>
+    <input type="number" id="amount" min="1" max="64" value="1">
+  </div>
+
+  <button class="button" onclick="generateItem()">コマンドを生成</button>
+
+  <pre class="command-output" id="output"></pre>
+  <button class="copy-btn" onclick="copyCommand()">コピー</button>
+</div>
+
+</div>
+
+<script>
+function toggleAmount() {
+  const item = document.getElementById("itemSelect").value;
+  const amountItems = ["golden_apple","oak_log","bone","iron_ingot","wheat_seeds"];
+  document.getElementById("amountBox").style.display =
+    amountItems.includes(item) ? "block" : "none";
+}
+
+// 個数入力の制限
+const amountInput = document.getElementById("amount");
+amountInput.addEventListener("input", () => {
+  if (amountInput.value > 64) amountInput.value = 64;
+  if (amountInput.value < 1) amountInput.value = 1;
+});
+
+function generateItem() {
+  const item = document.getElementById("itemSelect").value;
+  // 1〜64に補正
+  const num = Math.min(Math.max(parseInt(document.getElementById("amount").value||1),1),64);
+
+  if (!item) {
+    document.getElementById("output").textContent = "";
+    return;
+  }
+
+  let cmd = "";
+  switch(item){
+    case "golden_apple": cmd = `/give @p golden_apple ${num}`; break;
+    case "oak_log": cmd = `/give @p oak_log ${num}`; break;
+    case "iron_shovel": cmd = `/give @p iron_shovel`; break;
+    case "iron_sword": cmd = `/give @p iron_sword`; break;
+    case "iron_axe": cmd = `/give @p iron_axe`; break;
+    case "iron_pickaxe": cmd = `/give @p iron_pickaxe`; break;
+    case "diamond_sword": cmd = `/give @p diamond_sword`; break;
+    case "diamond_shovel": cmd = `/give @p diamond_shovel`; break;
+    case "diamond_axe": cmd = `/give @p diamond_axe`; break;
+    case "diamond_pickaxe": cmd = `/give @p diamond_pickaxe`; break;
+    case "bone": cmd = `/give @p minecraft:bone ${num}`; break;
+    case "iron_ingot": cmd = `/give @p minecraft:iron_ingot ${num}`; break;
+    case "diamond_helmet": cmd = `/item replace entity @p armor.head with minecraft:diamond_helmet`; break;
+    case "diamond_chestplate": cmd = `/item replace entity @p armor.chest with minecraft:diamond_chestplate`; break;
+    case "diamond_leggings": cmd = `/item replace entity @p armor.legs with minecraft:diamond_leggings`; break;
+    case "diamond_boots": cmd = `/item replace entity @p armor.feet with minecraft:diamond_boots`; break;
+    case "wheat_seeds": cmd = `/give @p minecraft:wheat_seeds ${num}`; break;
+  }
+
+  document.getElementById("output").textContent = cmd;
+}
+
+// コピーはコマンドのみ
+function copyCommand(){
+  const text = document.getElementById("output").textContent;
+  if (!text) return;
+  const temp = document.createElement("textarea");
+  temp.value = text;
+  document.body.appendChild(temp);
+  temp.select();
+  document.execCommand("copy");
+  document.body.removeChild(temp);
+  alert("📋 コマンドをコピーしました！");
+}
+</script>
+
+</body>
+</html>

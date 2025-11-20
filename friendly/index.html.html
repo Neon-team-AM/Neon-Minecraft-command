@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>友好MOB</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    max-width: 600px;
+    margin: 20px auto;
+  }
+  select {
+    width: 100%;
+    margin: 10px 0;
+    padding: 8px;
+    font-size: 15px;
+  }
+  .copy-btn {
+    background: #4CAF50;
+    color: #fff;
+    padding: 8px 14px;
+    border: none;
+    margin-top: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  button.button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: none;
+    background-color: #2196F3;
+    color: #fff;
+    cursor: pointer;
+  }
+  pre.command-output {
+    background: #f3f3f3;
+    padding: 10px;
+    border-radius: 6px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin-top: 10px;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+  <a href="index.html">⚡特殊コマンド</a>
+  <a href="items.html">🎁アイテム</a>
+  <a href="hostile.html">👿敵対MOB</a>
+  <a href="friendly.html">🐑友好MOB</a>
+</div>
+
+<div class="container">
+
+<div class="card">
+  <h1>🐑友好MOB</h1>
+
+  <label>召喚するMOBを選択：</label>
+  <select id="mobSelect">
+    <option value="">選択してください</option>
+    <option value="minecraft:iron_golem">アイアンゴーレム</option>
+    <option value="minecraft:sheep">羊</option>
+    <option value="minecraft:wolf">オオカミ</option>
+    <option value="minecraft:villager">村人</option>
+    <option value="minecraft:salmon">サケ</option>
+    <option value="minecraft:chicken">ニワトリ</option>
+    <option value="minecraft:parrot">オウム</option>
+  </select>
+
+  <button class="button" onclick="generateFriendly()">コマンドを生成</button>
+
+  <pre class="command-output" id="output"></pre>
+  <button class="copy-btn" onclick="copyCommand()">コピー</button>
+</div>
+
+</div>
+
+<script>
+function generateFriendly() {
+  const mob = document.getElementById("mobSelect").value;
+  if (!mob) {
+    document.getElementById("output").textContent = "MOBを選択してください。";
+    return;
+  }
+
+  const cmd = `/execute at @p run summon ${mob} ~ ~ ~`;
+  document.getElementById("output").textContent = cmd;
+}
+
+function copyCommand() {
+  const text = document.getElementById("output").textContent;
+  if (!text) return;
+
+  const temp = document.createElement("textarea");
+  temp.value = text;
+  document.body.appendChild(temp);
+  temp.select();
+  document.execCommand("copy");
+  document.body.removeChild(temp);
+
+  alert("📋 コマンドをコピーしました！");
+}
+</script>
+
+</body>
+</html>

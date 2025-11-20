@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>敵対MOB</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    max-width: 600px;
+    margin: 20px auto;
+  }
+  select, input[type=range] {
+    width: 100%;
+    margin: 10px 0;
+  }
+  .copy-btn {
+    background: #4CAF50;
+    color: #fff;
+    padding: 8px 14px;
+    border: none;
+    margin-top: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  button.button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: none;
+    background-color: #2196F3;
+    color: #fff;
+    cursor: pointer;
+  }
+  pre.command-output {
+    background: #f3f3f3;
+    padding: 10px;
+    border-radius: 6px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin-top: 10px;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+  <a href="index.html">⚡特殊コマンド</a>
+  <a href="items.html">🎁アイテム</a>
+  <a href="hostile.html">👿敵対MOB</a>
+  <a href="friendly.html">🐑友好MOB</a>
+</div>
+
+<div class="container">
+
+<div class="card">
+  <h1>👿敵対MOB</h1>
+
+  <label>召喚するMOBを選択：</label>
+  <select id="mobSelect">
+    <option value="">選択してください</option>
+    <option value="skeleton">スケルトン</option>
+    <option value="slime_small">スライム(小)</option>
+    <option value="slime_large">スライム(大)</option>
+    <option value="spider">クモ</option>
+    <option value="wither">ウィザー</option>
+    <option value="warden">ウォーデン</option>
+    <option value="zombie">ゾンビ</option>
+    <option value="dragon">エンダードラゴン</option>
+  </select>
+
+  <label>距離設定：</label>
+  <input type="range" id="distance" min="1" max="3" value="2"
+    oninput="distanceLabel.textContent = this.value == 1 ? '近め' : this.value == 2 ? '普通' : '遠め'">
+  <div><strong id="distanceLabel">普通</strong></div>
+
+  <button class="button" onclick="generateHostile()">コマンドを生成</button>
+
+  <pre class="command-output" id="output"></pre>
+  <button class="copy-btn" onclick="copyCommand()">コピー</button>
+</div>
+
+</div>
+
+<script>
+function generateHostile() {
+  const mob = document.getElementById("mobSelect").value;
+  const distText = document.getElementById("distanceLabel").textContent;
+  let cmd = "";
+
+  switch(mob){
+    case "skeleton":
+      cmd = `execute as @p at @p run summon skeleton ^ ^2 ^2 {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+    case "slime_small":
+      cmd = `execute as @p at @p run summon slime ~ ~ ~1 {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1,Size:0}`;
+      break;
+    case "slime_large":
+      cmd = `execute as @p at @p run summon slime ~ ~ ~1 {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1,Size:3}`;
+      break;
+    case "spider":
+      cmd = `execute at @a run summon spider ~ ~2 ~1 {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+    case "wither":
+      cmd = `execute at @a run summon wither ~ ~2 ~1 {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+    case "warden":
+      cmd = `execute as @p at @p run summon minecraft:warden ~1 ~1 ~1 {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1b,PersistenceRequired:1b,Brain:{memories:{"minecraft:dig_cooldown":{value:{},ttl:9223372036854775807L}}},anger:{suspects:[{uuid:[I;0,0,0,0]}]}}`;
+      break;
+    case "zombie":
+      cmd = `execute at @a run summon zombie ~ ~2 ~1 {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+    case "dragon":
+      cmd = `execute at @p run summon minecraft:ender_dragon ~ ~ ~ {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+    default:
+      cmd = "MOBを選択してください。";
+  }
+
+  document.getElementById("output").textContent = cmd;
+}
+
+function copyCommand(){
+  const output = document.getElementById("output").textContent;
+  if (!output) return;
+
+  const temp = document.createElement("textarea");
+  temp.value = output;
+  document.body.appendChild(temp);
+  temp.select();
+  document.execCommand("copy");
+  document.body.removeChild(temp);
+
+  alert("📋 コマンドをコピーしました！");
+}
+</script>
+
+</body>
+</html>
