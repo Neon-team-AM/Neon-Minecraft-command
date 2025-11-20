@@ -3,9 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>その他のコマンド</title>
-<link rel="stylesheet" href="style.css">
+<title>特殊コマンド</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+
 <style>
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+
+  /* ▼ ヘッダー（下層ページ） */
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 20px;
+  }
+  .navbar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .nav-logo-big { height: 50px; }
+  .nav-logo-small { height: 40px; }
+  .navbar span {
+    color: #666;
+    font-weight: bold;
+  }
+
+  /* ▼ ページ本体 */
   .card {
     background: #fff;
     padding: 20px;
@@ -41,48 +68,47 @@
     cursor: pointer;
   }
 
-  /* ★② 左上ロゴ＋トップリンク追加 */
-  .header {
+  .title-wrap {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin: 15px;
+    gap: 10px;
   }
-  .mini-logo {
-    width: 40px;
+  .title-logo {
+    height: 40px;
   }
-  .top-link {
-    text-decoration: none;
-    font-size: 16px;
-    color: #2196F3;
-    font-weight: bold;
-  }
-  .top-link:hover {
-    text-decoration: underline;
-  }
-
 </style>
 </head>
 
 <body>
 
-<!-- ★ここに追加：ロゴ＋トップリンク -->
+<!-- ▼ 下層ページ用ヘッダー -->
 <div class="header">
-  <img src="../images/neon_rogo1_VCMYK.png" class="mini-logo" alt="Neonロゴ">
-  <a href="../" class="top-link">トップ</a>
-</div>
+  <a href="../">
+    <img src="../images/TOP textlogo.png" class="nav-logo-big" alt="TOP">
+  </a>
 
-<div class="navbar">
-  <a href="../special/">⚡特殊コマンド</a>
-  <a href="../items/">🎁アイテム</a>
-  <a href="../enemy/">👿敵対MOB</a>
-  <a href="../friendly/">🐑友好MOB</a>
+  <nav class="navbar">
+    <a href="../special/"><img src="../images/special textlogo.png" class="nav-logo-small" alt="特殊"></a>
+    <span>｜</span>
+
+    <a href="../items/"><img src="../images/item textlogo.png" class="nav-logo-small" alt="アイテム"></a>
+    <span>｜</span>
+
+    <a href="../enemy/"><img src="../images/enemy textlogo.png" class="nav-logo-small" alt="敵対"></a>
+    <span>｜</span>
+
+    <a href="../friendly/"><img src="../images/friendly textlogo.png" class="nav-logo-small" alt="友好"></a>
+  </nav>
 </div>
 
 <div class="container">
 
 <div class="card">
-  <h1>💻その他のコマンド(特殊系)</h1>
+
+  <div class="title-wrap">
+    <img src="../images/special textlogo.png" class="title-logo" alt="特殊ロゴ">
+    <h1>特殊コマンド</h1>
+  </div>
 
   <label>コマンドを選択：</label>
   <select id="commandSelect">
@@ -98,6 +124,7 @@
 
   <pre class="command-output" id="output"></pre>
   <button class="copy-btn" onclick="copyCommand()">コピー</button>
+
 </div>
 
 </div>
