@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>友好MOB</title>
+<title>友好MOBコマンド</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
 
@@ -44,23 +44,21 @@
     text-align: left;
   }
 
-  /* ▼ タイトル部分 */
+
   .title-wrap {
     display: flex;
-    align-items: center;
     justify-content: center;
-    gap: 12px;
-    margin-bottom: 20px;
-
+    margin-bottom: 13px;
   }
   .title-logo-big {
-    height: 200px; /* heart.png */
+    height: 100px;
+    display: block;
   }
 
   select {
     width: 100%;
-    margin: 10px 0;
     padding: 8px;
+    margin: 10px 0;
     font-size: 15px;
   }
 
@@ -90,9 +88,9 @@
     background: #f3f3f3;
     padding: 10px;
     border-radius: 6px;
-    overflow-x: auto;
     white-space: pre-wrap;
     word-break: break-word;
+    overflow-x: auto;
     margin-top: 10px;
   }
 </style>
@@ -116,7 +114,6 @@
 
   <!-- ▼ タイトル -->
   <div class="title-wrap">
-    <img src="../images/heart.png" class="title-logo-small" alt="友好アイコン">
     <img src="../images/friendly textlogo.png" class="title-logo-big" alt="友好タイトル">
   </div>
 
@@ -169,5 +166,3 @@ function copyCommand() {
 
 </body>
 </html>
-
-
