@@ -44,15 +44,19 @@
     text-align: left;
   }
 
-  /* ▼ タイトル横アイコン */
+  /* ▼ タイトル部分 */
   .title-wrap {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 15px;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
   }
-  .title-logo {
-    height: 40px;
+  .title-logo-small {
+    height: 50px;
+  }
+  .title-logo-big {
+    height: 100px; 
   }
 
   select, input[type=number] {
@@ -112,9 +116,10 @@
 <div class="container">
 <div class="card">
 
+  <!-- ▼ タイトル -->
   <div class="title-wrap">
-    <img src="../images/sleep.png" class="title-logo" alt="アイテムロゴ">
-    <h1>アイテム付与</h1>
+    <img src="../images/sleep.png" class="title-logo-small" alt="アイテムアイコン">
+    <img src="../images/item textlogo.png" class="title-logo-big" alt="アイテムタイトル">
   </div>
 
   <label>アイテムを選択：</label>
