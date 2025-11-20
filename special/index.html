@@ -6,47 +6,63 @@
 <title>特殊コマンド</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../style.css">
 
 <style>
   body {
+    margin: 0;
     font-family: 'Noto Sans JP', sans-serif;
   }
 
-  /* ▼ ヘッダー（下層ページ） */
-  .header {
+  /* ▼ 上部メニュー（全ページ共通） */
+  .top-nav {
     display: flex;
     align-items: center;
-    gap: 20px;
-    padding: 10px 20px;
-  }
-  .navbar {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .nav-logo-big { height: 50px; }
-  .nav-logo-small { height: 40px; }
-  .navbar span {
-    color: #666;
-    font-weight: bold;
+    gap: 30px;
+    padding: 10px 20px 30px 20px;
   }
 
-  /* ▼ ページ本体 */
+  .left-logo {
+    height: 50px;
+  }
+
+  .menu-icon {
+    height: 150px;
+  }
+
+  /* ▼ 本文エリア */
+  .container {
+    max-width: 600px;
+    margin: 40px auto;
+    text-align: center;
+  }
+
   .card {
     background: #fff;
-    padding: 20px;
+    padding: 30px 20px;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    max-width: 600px;
-    margin: 20px auto;
+    text-align: left;
   }
+
+  /* ▼ タイトル横アイコン */
+  .title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+
+  .title-logo {
+    height: 40px;
+  }
+
   select {
     width: 100%;
     margin: 10px 0;
     padding: 8px;
     font-size: 15px;
   }
+
   button.button {
     width: 100%;
     padding: 10px;
@@ -58,6 +74,7 @@
     color: #fff;
     cursor: pointer;
   }
+
   .copy-btn {
     background: #4CAF50;
     color: #fff;
@@ -68,45 +85,36 @@
     cursor: pointer;
   }
 
-  .title-wrap {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .title-logo {
-    height: 40px;
+  pre.command-output {
+    background: #f3f3f3;
+    padding: 10px;
+    border-radius: 6px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin-top: 10px;
   }
 </style>
 </head>
 
 <body>
 
-<!-- ▼ 下層ページ用ヘッダー -->
-<div class="header">
-  <a href="../">
-    <img src="../images/TOP textlogo.png" class="nav-logo-big" alt="TOP">
-  </a>
+<!-- ▼ 上部ナビ（共通） -->
+<div class="top-nav">
+  <a href="../"><img src="../images/neon_rogo_solo.png" class="left-logo" alt="TOP"></a>
 
-  <nav class="navbar">
-    <a href="../special/"><img src="../images/special textlogo.png" class="nav-logo-small" alt="特殊"></a>
-    <span>｜</span>
-
-    <a href="../items/"><img src="../images/item textlogo.png" class="nav-logo-small" alt="アイテム"></a>
-    <span>｜</span>
-
-    <a href="../enemy/"><img src="../images/enemy textlogo.png" class="nav-logo-small" alt="敵対"></a>
-    <span>｜</span>
-
-    <a href="../friendly/"><img src="../images/friendly textlogo.png" class="nav-logo-small" alt="友好"></a>
-  </nav>
+  <a href="../"><img src="../images/TOP textlogo.png" class="menu-icon"></a>
+  <a href="../special/"><img src="../images/special textlogo.png" class="menu-icon"></a>
+  <a href="../items/"><img src="../images/item textlogo.png" class="menu-icon"></a>
+  <a href="../enemy/"><img src="../images/enemy textlogo.png" class="menu-icon"></a>
+  <a href="../friendly/"><img src="../images/friendly textlogo.png" class="menu-icon"></a>
 </div>
 
 <div class="container">
-
 <div class="card">
 
   <div class="title-wrap">
-    <img src="../images/special textlogo.png" class="title-logo" alt="特殊ロゴ">
+    <img src="../images/1.png" class="title-logo" alt="特殊ロゴ">
     <h1>特殊コマンド</h1>
   </div>
 
@@ -126,7 +134,6 @@
   <button class="copy-btn" onclick="copyCommand()">コピー</button>
 
 </div>
-
 </div>
 
 <script>
