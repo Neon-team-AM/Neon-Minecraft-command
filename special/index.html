@@ -40,16 +40,43 @@
     border-radius: 6px;
     cursor: pointer;
   }
+
+  /* ★② 左上ロゴ＋トップリンク追加 */
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 15px;
+  }
+  .mini-logo {
+    width: 40px;
+  }
+  .top-link {
+    text-decoration: none;
+    font-size: 16px;
+    color: #2196F3;
+    font-weight: bold;
+  }
+  .top-link:hover {
+    text-decoration: underline;
+  }
+
 </style>
 </head>
 
 <body>
 
+<!-- ★ここに追加：ロゴ＋トップリンク -->
+<div class="header">
+  <img src="../images/neon_rogo1_VCMYK.png" class="mini-logo" alt="Neonロゴ">
+  <a href="../" class="top-link">トップ</a>
+</div>
+
 <div class="navbar">
-  <a href="special/">⚡特殊コマンド</a>
-  <a href="items/">🎁アイテム</a>
-  <a href="enemy/">👿敵対MOB</a>
-  <a href="friendly/">🐑友好MOB</a>
+  <a href="../special/">⚡特殊コマンド</a>
+  <a href="../items/">🎁アイテム</a>
+  <a href="../enemy/">👿敵対MOB</a>
+  <a href="../friendly/">🐑友好MOB</a>
 </div>
 
 <div class="container">
@@ -64,8 +91,7 @@
     <option value="set_lava">プレイヤー頭上にマグマ設置</option>
     <option value="summon_lightning">雷を召喚</option>
     <option value="kill_mobs">敵対Mobをキル</option>
-<option value="tnt_set">TNT設置＆召喚（プレイヤー指定）</option>
-
+    <option value="tnt_set">TNT設置＆召喚（プレイヤー指定）</option>
   </select>
 
   <button class="button" onclick="generateCommand()">コマンド生成</button>
@@ -94,10 +120,9 @@ function generateCommand() {
     case "kill_mobs":
       cmd = `/kill @e[type=!player,type=!wither,type=!warden,type=!ender_dragon,type=!item]`;
       break;
-case "tnt_set":
-  cmd = `execute as {playername} at @s run fill ~-2 ~-3 ~-2 ~2 ~-1 ~2 minecraft:tnt[unstable=true] replace\n`;
-  cmd += `execute as {playername} at @s run summon tnt ~ ~ ~ {fuse:20}`;
-  break;
+    case "tnt_set":
+      cmd = `execute as {playername} at @s run fill ~-2 ~-3 ~-2 ~2 ~-1 ~2 minecraft:tnt[unstable=true] replace\n`;
+      cmd += `execute as {playername} at @s run summon tnt ~ ~ ~ {fuse:20}`;
       break;
     default:
       cmd = "コマンドを選択してください。";
@@ -107,7 +132,7 @@ case "tnt_set":
 }
 
 function copyCommand(){
-    const output = document.getElementById("output").textContent;
+  const output = document.getElementById("output").textContent;
   if (!output) return;
 
   const temp = document.createElement("textarea");
