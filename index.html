@@ -12,23 +12,22 @@
     font-family: sans-serif;
   }
 
-  /* 左上ロゴ */
-  .header {
-    padding: 10px 20px;
-  }
-  .header img.left-logo {
-    height: 50px; /* 一番左のロゴ 50px */
-  }
-
-  /* メニュー画像 */
-  .menu-bar {
+  /* 上部ナビ 横並び */
+  .top-nav {
     display: flex;
     align-items: center;
     gap: 30px;
-    padding: 5px 20px 30px 20px;
+    padding: 10px 20px 30px 20px;
   }
-  .menu-bar img {
-    height: 150px; /* 左上テキスト画像 150px */
+
+  /* 左上ロゴ */
+  .top-nav .left-logo {
+    height: 50px;
+  }
+
+  /* メニュー画像 */
+  .top-nav .menu-icon {
+    height: 150px;
   }
 
   /* メインカード */
@@ -60,27 +59,22 @@
 
 <body>
 
-<!-- 左上ロゴ -->
-<div class="header">
-  <a href="./">
-    <img src="images/neon_rogo_solo.png" class="left-logo" alt="Neonロゴ">
-  </a>
-</div>
+<!-- ナビ全体 1行表示 -->
+<div class="top-nav">
+  <a href="./"><img src="images/neon_rogo_solo.png" class="left-logo" alt="ロゴ"></a>
 
-<!-- メニュー -->
-<div class="menu-bar">
-  <a href="./"><img src="images/TOP textlogo.png" alt="TOP"></a>
-  <a href="special/"><img src="images/special textlogo.png" alt="特殊"></a>
-  <a href="items/"><img src="images/item textlogo.png" alt="アイテム"></a>
-  <a href="enemy/"><img src="images/enemy textlogo.png" alt="敵対"></a>
-  <a href="friendly/"><img src="images/friendly textlogo.png" alt="友好"></a>
+  <a href="./"><img src="images/TOP textlogo.png" class="menu-icon" alt="TOP"></a>
+  <a href="special/"><img src="images/special textlogo.png" class="menu-icon" alt="特殊"></a>
+  <a href="items/"><img src="images/item textlogo.png" class="menu-icon" alt="アイテム"></a>
+  <a href="enemy/"><img src="images/enemy textlogo.png" class="menu-icon" alt="敵対"></a>
+  <a href="friendly/"><img src="images/friendly textlogo.png" class="menu-icon" alt="友好"></a>
 </div>
 
 <!-- メイン -->
 <div class="container">
   <div class="card">
 
-    <!-- タイトル画像（250px） -->
+    
     <img src="images/command list.png" alt="コマンドリスト" style="height:250px; margin-bottom:20px;">
 
     <p>使いたいコマンドのページへ移動してください</p>
