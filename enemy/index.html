@@ -120,7 +120,6 @@
 <option value="illusioner">イリュージョナー</option>
 <option value="evoker">エヴォーカー</option>
 <option value="elder_guardian">エルダーガーディアン</option>
-<option value="endermite">エンダーマイト</option>
 <option value="creeper">クリーパー</option>
 <option value="cave_spider">洞窟グモ</option>
 <option value="killer_rabbit">キラーラビット</option>
@@ -164,6 +163,7 @@
 <!--  エンド -->
 <option disabled>―― エンド ――</option>
 <option value="dragon">エンダードラゴン</option>
+<option value="enderman">エンダーマン</option>
 <option value="endermite">エンダーマイト</option>
 <option value="shulker">シュルカー</option>
 
@@ -353,6 +353,10 @@ function generateHostile() {
   cmd = `execute at @p run summon ender_dragon ~ ~2 ~${dist} {DragonPhase:0,CustomName:'{"text":"{nickname}"}',CustomNameVisible:1,Attributes:[{Name:"generic.follow_range",Base:1}]}`;
   break;
 
+  case "enderman":
+  cmd = `execute at @p run summon enderman ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+  break;
+
 
     default:
       cmd = "MOBを選択してください。";
@@ -378,6 +382,7 @@ function copyCommand(){
 
 </body>
 </html>
+
 
 
 
