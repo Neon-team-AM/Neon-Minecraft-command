@@ -13,7 +13,6 @@
     font-family: 'Noto Sans JP', sans-serif;
   }
 
-  /* ▼ 上部ナビ（共通） */
   .top-nav {
     display: flex;
     align-items: center;
@@ -29,7 +28,6 @@
     height: 150px;
   }
 
-  /* ▼ ページ本体 */
   .container {
     max-width: 600px;
     margin: 40px auto;
@@ -43,7 +41,6 @@
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     text-align: left;
   }
-
 
   .title-wrap {
     display: flex;
@@ -112,7 +109,6 @@
 <div class="container">
 <div class="card">
 
-  <!-- ▼ タイトル画像 -->
   <div class="title-wrap">
     <img src="../images/enemy textlogo.png" class="title-logo-big" alt="敵対タイトル">
   </div>
@@ -120,13 +116,49 @@
   <label>召喚するMOBを選択：</label>
   <select id="mobSelect">
     <option value="">選択してください</option>
-    <option value="skeleton">スケルトン</option>
+
+
     <option value="slime_small">スライム(小)</option>
+    <option value="slime_mid">スライム(中)</option>
     <option value="slime_large">スライム(大)</option>
-    <option value="spider">クモ</option>
-    <option value="wither">ウィザー</option>
-    <option value="warden">ウォーデン</option>
-    <option value="zombie">ゾンビ</option>
+
+    <option value="magma_small">マグマキューブ(小)</option>
+　　<option value="magma_mid">マグマキューブ(中)</option>
+　　<option value="magma_large">マグマキューブ(大)</option>
+
+
+    <option value="wither_skeleton">ウィザースケルトン</option>
+    <option value="skeleton_rider">スケルトンライダー</option>
+    <option value="witch">ウィッチ</option>
+    <option value="vindicator">ヴィンディケーター</option>
+    <option value="vex">ヴェックス</option>
+    <option value="evoker">エヴォーカー</option>
+    <option value="elder_guardian">エルダーガーディアン</option>
+    <option value="guardian">ガーディアン</option>
+    <option value="endermite">エンダーマイト</option>
+    <option value="ghast">ガスト</option>
+    <option value="creeper">クリーパー</option>
+    <option value="shulker">シュルカー</option>
+    <option value="silverfish">シルバーフィッシュ</option>
+    <option value="stray">ストレイ</option>
+    <option value="spider_jockey">スパイダージョッキー</option>
+    <option value="zoglin">ゾグリン</option>
+    <option value="chicken_jockey">チキンジョッキー</option>
+    <option value="husk">ハスク</option>
+    <option value="piglin_brute">ピグリンブルート</option>
+    <option value="pillager">ピリジャー</option>
+    <option value="phantom">ファントム</option>
+    <option value="breeze">ブリーズ(1.21)</option>
+    <option value="blaze">ブレイズ</option>
+    <option value="bogged">ボグド(1.21)</option>
+    <option value="hoglin">ホグリン</option>
+    <option value="zombie_villager">村人ゾンビ</option>
+    <option value="ravager">ラヴェジャー</option>
+    <option value="illusioner">イリュージョナー</option>
+    <option value="killer_rabbit">殺人ウサギ</option>
+    <option value="cave_spider">洞窟グモ</option>
+    <option value="drowned">ドラウンド</option>
+
     <option value="dragon">エンダードラゴン</option>
   </select>
 
@@ -151,30 +183,147 @@ function generateHostile() {
   let cmd = "";
 
   switch(mob){
-    case "skeleton":
-      cmd = `execute as @p at @p run summon skeleton ^ ^2 ^${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
-      break;
+
     case "slime_small":
-      cmd = `execute as @p at @p run summon slime ~ ~ ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1,Size:0}`;
+      cmd = `execute at @p run summon slime ~ ~2 ~${dist} {Size:1,CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
       break;
+
+    case "slime_mid":
+      cmd = `execute at @p run summon slime ~ ~2 ~${dist} {Size:2,CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+
     case "slime_large":
-      cmd = `execute as @p at @p run summon slime ~ ~ ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1,Size:3}`;
+      cmd = `execute at @p run summon slime ~ ~2 ~${dist} {Size:4,CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
       break;
-    case "spider":
-      cmd = `execute at @p run summon spider ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+
+    case "wither_skeleton":
+      cmd = `execute at @p run summon wither_skeleton ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
       break;
-    case "wither":
-      cmd = `execute at @p run summon wither ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+
+    case "skeleton_rider":
+      cmd = `execute at @p run summon skeleton_horse ~ ~2 ~${dist} {SkeletonTrap:1,CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
       break;
-    case "warden":
-      cmd = `execute as @p at @p run summon minecraft:warden ~1 ~1 ~${dist} {CustomName:'{"text":"{nickname}"}',CustomNameVisible:1b}`;
+
+    case "witch":
+      cmd = `execute at @p run summon witch ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
       break;
-    case "zombie":
-      cmd = `execute at @p run summon zombie ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+
+    case "vindicator":
+      cmd = `execute at @p run summon vindicator ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
       break;
+
+    case "vex":
+      cmd = `execute at @p run summon vex ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+
+    case "evoker":
+      cmd = `execute at @p run summon evoker ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+
+    case "elder_guardian":
+      cmd = `execute at @p run summon elder_guardian ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+
+    case "guardian":
+      cmd = `execute at @p run summon guardian ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+
+    case "endermite":
+      cmd = `execute at @p run summon endermite ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+
+    case "ghast":
+      cmd = `execute at @p run summon ghast ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+
+    case "creeper":
+      cmd = `execute at @p run summon creeper ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+
+    case "shulker":
+      cmd = `execute at @p run summon shulker ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+
+    case "silverfish":
+      cmd = `execute at @p run summon silverfish ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+
+    case "stray":
+      cmd = `execute at @p run summon stray ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+
+    case "spider_jockey":
+      cmd = `execute at @p run summon spider ~ ~2 ~${dist} {Passengers:[{id:"skeleton"}],CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+
+    case "zoglin":
+      cmd = `execute at @p run summon zoglin ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+
+    case "chicken_jockey":
+      cmd = `execute at @p run summon zombie ~ ~2 ~${dist} {IsBaby:1,Passengers:[{id:"chicken"}],CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+
+    case "husk":
+      cmd = `execute at @p run summon husk ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+
+    case "piglin_brute":
+      cmd = `execute at @p run summon piglin_brute ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+
+    case "pillager":
+      cmd = `execute at @p run summon pillager ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+
+    case "phantom":
+      cmd = `execute at @p run summon phantom ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+
+    case "breeze":
+      cmd = `execute at @p run summon breeze ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+
+    case "blaze":
+      cmd = `execute at @p run summon blaze ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+
+    case "bogged":
+      cmd = `execute at @p run summon bogged ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+
+    case "hoglin":
+      cmd = `execute at @p run summon hoglin ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+
+    case "zombie_villager":
+      cmd = `execute at @p run summon zombie_villager ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+
+    case "ravager":
+      cmd = `execute at @p run summon ravager ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+
+    case "illusioner":
+      cmd = `execute at @p run summon illusioner ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+
+    case "killer_rabbit":
+      cmd = `execute at @p run summon rabbit ~ ~2 ~${dist} {RabbitType:99,CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+
+    case "cave_spider":
+      cmd = `execute at @p run summon cave_spider ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+
+    case "drowned":
+      cmd = `execute at @p run summon drowned ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      break;
+
     case "dragon":
-      cmd = `execute at @p run summon minecraft:ender_dragon ~ ~ ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+      cmd = `execute at @p run summon ender_dragon ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
       break;
+
     default:
       cmd = "MOBを選択してください。";
   }
@@ -199,6 +348,3 @@ function copyCommand(){
 
 </body>
 </html>
-
-
-
