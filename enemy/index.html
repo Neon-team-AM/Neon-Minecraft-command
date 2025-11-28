@@ -204,8 +204,9 @@ function generateHostile() {
       break;
 
     case "skeleton":
-      cmd = `/execute at @a run summon skeleton ~ ~2 ~1 {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1,HandItems:[{Count:1,id:"minecraft:bow"},{}]}`;
-      break;
+     cmd = `execute at @p run summon skeleton ~ ~2 ~${dist} {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1,HandItems:[{Count:1,id:"minecraft:bow"},{}]}`;
+     break;
+
       
     case "slime_large":
       cmd = `execute at @p run summon slime ~ ~2 ~${dist} {Size:4,CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
@@ -376,6 +377,7 @@ function copyCommand(){
 
 </body>
 </html>
+
 
 
 
