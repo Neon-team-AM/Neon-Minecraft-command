@@ -13,7 +13,6 @@
     font-family: 'Noto Sans JP', sans-serif;
   }
 
-  /* ▼ 上部ナビ（共通） */
   .top-nav {
     display: flex;
     align-items: center;
@@ -29,7 +28,6 @@
     height: 150px;
   }
 
-  /* ▼ ページ本体 */
   .container {
     max-width: 600px;
     margin: 40px auto;
@@ -50,7 +48,7 @@
     margin-bottom: 1px;
   }
   .title-logo-big {
-    height: 180px; /* item textlogo  */
+    height: 180px;
     display: block;
   }
 
@@ -97,21 +95,19 @@
 
 <body>
 
-<!-- ▼ 上部ナビ（共通） -->
 <div class="top-nav">
   <a href="../"><img src="../images/neon_rogo_solo.png" class="left-logo" alt="TOP"></a>
 
-  <a href="../"><img src="../images/TOP textlogo.png" class="menu-icon" alt="TOPメニュー"></a>
-  <a href="../special/"><img src="../images/special textlogo.png" class="menu-icon" alt="特殊メニュー"></a>
-  <a href="../items/"><img src="../images/item textlogo.png" class="menu-icon" alt="アイテムメニュー"></a>
-  <a href="../enemy/"><img src="../images/enemy textlogo.png" class="menu-icon" alt="敵対メニュー"></a>
-  <a href="../friendly/"><img src="../images/friendly textlogo.png" class="menu-icon" alt="友好メニュー"></a>
+  <a href="../"><img src="../images/TOP textlogo.png" class="menu-icon"></a>
+  <a href="../special/"><img src="../images/special textlogo.png" class="menu-icon"></a>
+  <a href="../items/"><img src="../images/item textlogo.png" class="menu-icon"></a>
+  <a href="../enemy/"><img src="../images/enemy textlogo.png" class="menu-icon"></a>
+  <a href="../friendly/"><img src="../images/friendly textlogo.png" class="menu-icon"></a>
 </div>
 
 <div class="container">
 <div class="card">
 
- 
   <div class="title-wrap">
     <img src="../images/item textlogo.png" class="title-logo-big" alt="アイテムタイトル">
   </div>
@@ -142,6 +138,53 @@
     <option value="diamond_boots">ダイヤ防具：足</option>
 
     <option value="wheat_seeds">小麦の種</option>
+
+    <option value="torch">松明</option>
+    <option value="coal">石炭</option>
+    <option value="bucket">バケツ</option>
+    <option value="water_bucket">水入りバケツ</option>
+    <option value="lava_bucket">溶岩バケツ</option>
+    <option value="milk_bucket">牛乳入りバケツ</option>
+
+    <option value="flint_and_steel">火打ち石と打ち金</option>
+    <option value="ender_pearl">エンダーパール</option>
+
+    <option value="shield">盾</option>
+    <option value="trident">トライデント</option>
+    <option value="totem_of_undying">不死のトーテム</option>
+    <option value="elytra">エリトラ</option>
+
+    <option value="cooked_beef">ステーキ</option>
+    <option value="cooked_porkchop">焼き豚</option>
+    <option value="bread">パン</option>
+    <option value="dried_kelp">干し昆布</option>
+    <option value="enchanted_golden_apple">エンチャ金リンゴ</option>
+
+    <option value="compass">コンパス</option>
+    <option value="map">地図</option>
+    <option value="clock">時計</option>
+    <option value="sugar_cane">サトウキビ</option>
+
+    <option value="ender_chest">エンダーチェスト</option>
+    <option value="glass">ガラス</option>
+    <option value="scaffolding">足場</option>
+    <option value="ladder">はしご</option>
+
+    <option value="brush">ブラシ</option>
+    <option value="spyglass">望遠鏡</option>
+
+    <option value="shulker_box">シュルカーボックス</option>
+    <option value="white_wool">白の羊毛</option>
+    <option value="white_carpet">白色のカーペット</option>
+
+    <option value="oak_boat">ボート</option>
+    <option value="lead">リード</option>
+    <option value="saddle">サドル</option>
+    <option value="name_tag">名札</option>
+
+    <option value="firework_rocket_1">ロケット花火Lv1</option>
+    <option value="firework_rocket_2">ロケット花火Lv2</option>
+    <option value="firework_rocket_3">ロケット花火Lv3</option>
   </select>
 
   <div id="amountBox" style="display:none;">
@@ -160,14 +203,30 @@
 <script>
 function toggleAmount() {
   const item = document.getElementById("itemSelect").value;
-  const amountItems = ["golden_apple","oak_log","bone","iron_ingot","wheat_seeds"];
-  document.getElementById("amountBox").style.display =
-    amountItems.includes(item) ? "block" : "none";
+  const amountItems = [
+    "golden_apple","oak_log","bone","iron_ingot","wheat_seeds",
+    "torch","coal","bucket","water_bucket","lava_bucket",
+    "milk_bucket","flint_and_steel","ender_pearl",
+    "cooked_beef","cooked_porkchop","bread","dried_kelp",
+    "enchanted_golden_apple","glass","scaffolding","ladder",
+    "white_wool","white_carpet","sugar_cane"
+  ];
+
+  if (item === "ender_pearl") {
+    document.getElementById("amountBox").style.display = "block";
+    document.getElementById("amount").max = 16;
+  } else if (amountItems.includes(item)) {
+    document.getElementById("amountBox").style.display = "block";
+    document.getElementById("amount").max = 64;
+  } else {
+    document.getElementById("amountBox").style.display = "none";
+  }
 }
 
 function generateItem() {
   const item = document.getElementById("itemSelect").value;
-  const num = Math.min(Math.max(parseInt(document.getElementById("amount").value||1),1),64);
+  let maxVal = (item === "ender_pearl") ? 16 : 64;
+  const num = Math.min(Math.max(parseInt(document.getElementById("amount").value||1),1),maxVal);
 
   if (!item) {
     document.getElementById("output").textContent = "";
@@ -175,24 +234,78 @@ function generateItem() {
   }
 
   let cmd = "";
+
   switch(item){
+
     case "golden_apple": cmd = `/give @p golden_apple ${num}`; break;
     case "oak_log": cmd = `/give @p oak_log ${num}`; break;
+
     case "iron_shovel": cmd = `/give @p iron_shovel`; break;
     case "iron_sword": cmd = `/give @p iron_sword`; break;
     case "iron_axe": cmd = `/give @p iron_axe`; break;
     case "iron_pickaxe": cmd = `/give @p iron_pickaxe`; break;
+
     case "diamond_sword": cmd = `/give @p diamond_sword`; break;
     case "diamond_shovel": cmd = `/give @p diamond_shovel`; break;
     case "diamond_axe": cmd = `/give @p diamond_axe`; break;
     case "diamond_pickaxe": cmd = `/give @p diamond_pickaxe`; break;
-    case "bone": cmd = `/give @p minecraft:bone ${num}`; break;
-    case "iron_ingot": cmd = `/give @p minecraft:iron_ingot ${num}`; break;
-    case "diamond_helmet": cmd = `/item replace entity @p armor.head with minecraft:diamond_helmet`; break;
-    case "diamond_chestplate": cmd = `/item replace entity @p armor.chest with minecraft:diamond_chestplate`; break;
-    case "diamond_leggings": cmd = `/item replace entity @p armor.legs with minecraft:diamond_leggings`; break;
-    case "diamond_boots": cmd = `/item replace entity @p armor.feet with minecraft:diamond_boots`; break;
-    case "wheat_seeds": cmd = `/give @p minecraft:wheat_seeds ${num}`; break;
+
+    case "bone": cmd = `/give @p bone ${num}`; break;
+    case "iron_ingot": cmd = `/give @p iron_ingot ${num}`; break;
+
+    case "diamond_helmet": cmd = `/item replace entity @p armor.head with diamond_helmet`; break;
+    case "diamond_chestplate": cmd = `/item replace entity @p armor.chest with diamond_chestplate`; break;
+    case "diamond_leggings": cmd = `/item replace entity @p armor.legs with diamond_leggings`; break;
+    case "diamond_boots": cmd = `/item replace entity @p armor.feet with diamond_boots`; break;
+
+    case "wheat_seeds": cmd = `/give @p wheat_seeds ${num}`; break;
+
+    case "torch": cmd = `/give @p torch ${num}`; break;
+    case "coal": cmd = `/give @p coal ${num}`; break;
+    case "bucket": cmd = `/give @p bucket ${num}`; break;
+    case "water_bucket": cmd = `/give @p water_bucket ${num}`; break;
+    case "lava_bucket": cmd = `/give @p lava_bucket ${num}`; break;
+    case "milk_bucket": cmd = `/give @p milk_bucket ${num}`; break;
+
+    case "flint_and_steel": cmd = `/give @p flint_and_steel ${num}`; break;
+    case "ender_pearl": cmd = `/give @p ender_pearl ${num}`; break;
+
+    case "shield": cmd = `/give @p shield`; break;
+    case "trident": cmd = `/give @p trident`; break;
+    case "totem_of_undying": cmd = `/give @p totem_of_undying`; break;
+    case "elytra": cmd = `/give @p elytra`; break;
+
+    case "cooked_beef": cmd = `/give @p cooked_beef ${num}`; break;
+    case "cooked_porkchop": cmd = `/give @p cooked_porkchop ${num}`; break;
+    case "bread": cmd = `/give @p bread ${num}`; break;
+    case "dried_kelp": cmd = `/give @p dried_kelp ${num}`; break;
+    case "enchanted_golden_apple": cmd = `/give @p enchanted_golden_apple ${num}`; break;
+
+    case "compass": cmd = `/give @p compass`; break;
+    case "map": cmd = `/give @p map`; break;
+    case "clock": cmd = `/give @p clock`; break;
+    case "sugar_cane": cmd = `/give @p sugar_cane ${num}`; break;
+
+    case "ender_chest": cmd = `/give @p ender_chest`; break;
+    case "glass": cmd = `/give @p glass ${num}`; break;
+    case "scaffolding": cmd = `/give @p scaffolding ${num}`; break;
+    case "ladder": cmd = `/give @p ladder ${num}`; break;
+
+    case "brush": cmd = `/give @p brush`; break;
+    case "spyglass": cmd = `/give @p spyglass`; break;
+
+    case "shulker_box": cmd = `/give @p shulker_box`; break;
+    case "white_wool": cmd = `/give @p white_wool ${num}`; break;
+    case "white_carpet": cmd = `/give @p white_carpet ${num}`; break;
+
+    case "oak_boat": cmd = `/give @p oak_boat`; break;
+    case "lead": cmd = `/give @p lead`; break;
+    case "saddle": cmd = `/give @p saddle`; break;
+    case "name_tag": cmd = `/give @p name_tag`; break;
+
+    case "firework_rocket_1": cmd = `/give @p firework_rocket{Fireworks:{Flight:1}}`; break;
+    case "firework_rocket_2": cmd = `/give @p firework_rocket{Fireworks:{Flight:2}}`; break;
+    case "firework_rocket_3": cmd = `/give @p firework_rocket{Fireworks:{Flight:3}}`; break;
   }
 
   document.getElementById("output").textContent = cmd;
@@ -213,7 +326,3 @@ function copyCommand(){
 
 </body>
 </html>
-
-
-
-
