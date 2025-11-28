@@ -8,86 +8,45 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-  body {
-    margin: 0;
-    font-family: 'Noto Sans JP', sans-serif;
-  }
+  body { margin: 0; font-family: 'Noto Sans JP', sans-serif; }
 
   .top-nav {
-    display: flex;
-    align-items: center;
-    gap: 30px;
+    display: flex; align-items: center; gap: 30px;
     padding: 10px 20px 30px 20px;
   }
 
-  .left-logo {
-    height: 50px;
-  }
+  .left-logo { height: 50px; }
+  .menu-icon { height: 150px; }
 
-  .menu-icon {
-    height: 150px;
-  }
-
-  .container {
-    max-width: 600px;
-    margin: 40px auto;
-    text-align: center;
-  }
+  .container { max-width: 600px; margin: 40px auto; text-align: center; }
 
   .card {
-    background: #fff;
-    padding: 30px 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    background: #fff; padding: 30px 20px;
+    border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     text-align: left;
   }
 
-  .title-wrap {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1px;
-  }
-  .title-logo-big {
-    height: 180px;
-    display: block;
-  }
+  .title-wrap { display: flex; justify-content: center; margin-bottom: 1px; }
+  .title-logo-big { height: 180px; display: block; }
 
   select, input[type=number] {
-    width: 100%;
-    margin: 10px 0;
-    padding: 8px;
-    font-size: 15px;
+    width: 100%; margin: 10px 0; padding: 8px; font-size: 15px;
   }
 
   button.button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 8px;
-    font-size: 16px;
-    border-radius: 6px;
-    border: none;
-    background-color: #2196F3;
-    color: #fff;
-    cursor: pointer;
+    width: 100%; padding: 10px; margin-top: 8px; font-size: 16px;
+    border-radius: 6px; border: none; background-color: #2196F3;
+    color: #fff; cursor: pointer;
   }
 
   .copy-btn {
-    background: #4CAF50;
-    color: #fff;
-    padding: 8px 14px;
-    border: none;
-    margin-top: 8px;
-    border-radius: 6px;
-    cursor: pointer;
+    background: #4CAF50; color: #fff; padding: 8px 14px;
+    border: none; margin-top: 8px; border-radius: 6px; cursor: pointer;
   }
 
   pre.command-output {
-    background: #f3f3f3;
-    padding: 10px;
-    border-radius: 6px;
-    white-space: pre-wrap;
-    word-break: break-word;
-    overflow-x: auto;
+    background: #f3f3f3; padding: 10px; border-radius: 6px;
+    white-space: pre-wrap; word-break: break-word; overflow-x: auto;
     margin-top: 10px;
   }
 </style>
@@ -214,15 +173,18 @@
 <option value="map">地図</option>
 <option value="clock">時計</option>
 
-<!-- 特殊 -->
+<!-- 特殊 / その他 -->
 <option disabled>―― 特殊 / その他 ――</option>
 <option value="ender_chest">エンダーチェスト</option>
 <option value="command_block">コマンドブロック</option>
 <option value="shulker_box">シュルカーボックス</option>
 <option value="name_tag">名札</option>
 <option value="book">本</option>
+<option value="torch">松明</option>
+<option value="coal">石炭</option>
+<option value="sugar_cane">サトウキビ</option>
 
-<!-- 花火（数量1〜64） -->
+<!-- 花火 -->
 <option disabled>―― 花火 ――</option>
 <option value="firework_rocket_1">ロケット花火Lv1</option>
 <option value="firework_rocket_2">ロケット花火Lv2</option>
@@ -261,26 +223,23 @@ function toggleAmount() {
 
     "bucket","milk_bucket","water_bucket","lava_bucket",
 
-    "torch","coal","sugar_cane","hay_block","book",
+    "torch","coal","sugar_cane","book",
 
     "firework_rocket_1","firework_rocket_2","firework_rocket_3"
   ];
 
-  // エンダーパール → 1〜16
   if (item === "ender_pearl") {
     amountBox.style.display = "block";
     amount.max = 16;
     return;
   }
 
-  // 数量ありアイテム（1〜64）
   if (amountItems.includes(item)) {
     amountBox.style.display = "block";
     amount.max = 64;
     return;
   }
 
-  // 武器 / ツール / 防具 → 数量なし
   amountBox.style.display = "none";
 }
 
@@ -358,11 +317,11 @@ function generateItem() {
     case "firework_rocket_2": cmd = `/give @p firework_rocket{Fireworks:{Flight:2}} ${num}`; break;
     case "firework_rocket_3": cmd = `/give @p firework_rocket{Fireworks:{Flight:3}} ${num}`; break;
 
-    /* ▼ 数量なしアイテム（武器・防具・ツールなど） */
+    /* ▼ 数量なしアイテム */
     case "diamond_sword": cmd = `/give @p diamond_sword`; break;
+    case "trident": cmd = `/give @p trident`; break;
     case "iron_sword": cmd = `/give @p iron_sword`; break;
     case "mace": cmd = `/give @p mace`; break;
-    case "trident": cmd = `/give @p trident`; break;
     case "bow": cmd = `/give @p bow`; break;
     case "crossbow": cmd = `/give @p crossbow`; break;
 
@@ -385,6 +344,7 @@ function generateItem() {
     case "flint_and_steel": cmd = `/give @p flint_and_steel`; break;
 
     case "ender_chest": cmd = `/give @p ender_chest`; break;
+    case "command_block": cmd = `/give @p command_block`; break;
     case "shulker_box": cmd = `/give @p shulker_box`; break;
     case "name_tag": cmd = `/give @p name_tag`; break;
 
@@ -397,8 +357,10 @@ function generateItem() {
 
     case "axolotl_bucket": cmd = `/give @p axolotl_bucket`; break;
 
-    /* ▼ 特殊ケース */
-    case "ender_pearl": cmd = `/give @p ender_pearl ${num}`; break;
+    /* ▼ エンダーパール（特別） */
+    case "ender_pearl":
+      cmd = `/give @p ender_pearl ${num}`;
+      break;
   }
 
   document.getElementById("output").textContent = cmd;
