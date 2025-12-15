@@ -122,7 +122,7 @@
 <option value="armadillo">アルマジロ</option>
 <option value="cow">牛</option>
 <option value="wolf">オオカミ</option>
-<option value="wolf">懐いているオオカミ</option>
+<option value="tame_wolf">懐いているオオカミ</option>
 <option value="chicken">ニワトリ</option>
 <option value="horse">馬</option>
 <option value="donkey">ロバ</option>
@@ -180,7 +180,7 @@ function generateFriendly() {
     return;
   }
 
- if (mob === "wolf") {
+ if (mob === "tame_wolf") {
     cmd = `execute as @p at @p run summon wolf ~ ~ ~ {variant:ashen,Owner:"{playername}",CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
   } else {
 
@@ -205,6 +205,7 @@ function copyCommand() {
 
 </body>
 </html>
+
 
 
 
