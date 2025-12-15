@@ -12,28 +12,19 @@
     margin: 0;
     font-family: 'Noto Sans JP', sans-serif;
   }
-
   .top-nav {
     display: flex;
     align-items: center;
     gap: 30px;
     padding: 10px 20px 30px 20px;
   }
-
-  .left-logo {
-    height: 50px;
-  }
-
-  .menu-icon {
-    height: 150px;
-  }
-
+  .left-logo { height: 50px; }
+  .menu-icon { height: 150px; }
   .container {
     max-width: 600px;
     margin: 40px auto;
     text-align: center;
   }
-
   .card {
     background: #fff;
     padding: 30px 20px;
@@ -41,7 +32,6 @@
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     text-align: left;
   }
-
   .title-wrap {
     display: flex;
     justify-content: center;
@@ -51,14 +41,12 @@
     height: 180px;
     display: block;
   }
-
   select {
     width: 100%;
     padding: 8px;
     margin: 10px 0;
     font-size: 15px;
   }
-
   button.button {
     width: 100%;
     padding: 10px;
@@ -70,7 +58,6 @@
     color: #fff;
     cursor: pointer;
   }
-
   .copy-btn {
     background: #4CAF50;
     color: #fff;
@@ -80,7 +67,6 @@
     border-radius: 6px;
     cursor: pointer;
   }
-
   pre.command-output {
     background: #f3f3f3;
     padding: 10px;
@@ -96,8 +82,7 @@
 <body>
 
 <div class="top-nav">
-  <a href="../"><img src="../images/neon_rogo_solo.png" class="left-logo" alt="TOP"></a>
-
+  <a href="../"><img src="../images/neon_rogo_solo.png" class="left-logo"></a>
   <a href="../"><img src="../images/TOP textlogo.png" class="menu-icon"></a>
   <a href="../special/"><img src="../images/special textlogo.png" class="menu-icon"></a>
   <a href="../items/"><img src="../images/item textlogo.png" class="menu-icon"></a>
@@ -109,59 +94,58 @@
 <div class="card">
 
   <div class="title-wrap">
-    <img src="../images/friendly textlogo.png" class="title-logo-big" alt="友好タイトル">
+    <img src="../images/friendly textlogo.png" class="title-logo-big">
   </div>
 
   <label>召喚するMOBを選択：</label>
   <select id="mobSelect">
     <option value="">選択してください</option>
 
- <!-- オーバーワールド -->
-<option disabled>―― オーバーワールド ――</option>
-<option value="allay">アレイ</option>
-<option value="armadillo">アルマジロ</option>
-<option value="cow">牛</option>
-<option value="wolf">オオカミ</option>
-<option value="tame_wolf">懐いているオオカミ</option>
-<option value="chicken">ニワトリ</option>
-<option value="horse">馬</option>
-<option value="donkey">ロバ</option>
-<option value="llama">ラマ</option>
-<option value="fox">キツネ</option>
-<option value="cat">猫</option>
-<option value="sheep">羊</option>
-<option value="pig">豚</option>
-<option value="goat">ヤギ</option>
-<option value="rabbit">ウサギ</option>
-<option value="villager">村人</option>
-<option value="panda">パンダ</option>
-<option value="mooshroom">ムーシュルーム</option>
-<option value="sniffer">スニッファー</option>
+    <!-- オーバーワールド -->
+    <option disabled>―― オーバーワールド ――</option>
+    <option value="allay">アレイ</option>
+    <option value="armadillo">アルマジロ</option>
+    <option value="cow">牛</option>
+    <option value="wolf">オオカミ</option>
+    <option value="tame_wolf">懐いているオオカミ</option>
+    <option value="chicken">ニワトリ</option>
+    <option value="horse">馬</option>
+    <option value="donkey">ロバ</option>
+    <option value="llama">ラマ</option>
+    <option value="fox">キツネ</option>
+    <option value="cat">猫</option>
+    <option value="sheep">羊</option>
+    <option value="pig">豚</option>
+    <option value="goat">ヤギ</option>
+    <option value="rabbit">ウサギ</option>
+    <option value="villager">村人</option>
+    <option value="panda">パンダ</option>
+    <option value="mooshroom">ムーシュルーム</option>
+    <option value="sniffer">スニッファー</option>
 
-<!-- 水中 -->
-<option disabled>―― 水中 ――</option>
-<option value="axolotl">ウーパールーパー</option>
-<option value="dolphin">イルカ</option>
-<option value="turtle">カメ</option>
-<option value="pufferfish">フグ</option>
-<option value="salmon">サケ</option>
-<option value="cod">タラ</option>
-<option value="tropical_fish">熱帯魚</option>
+    <!-- 水中 -->
+    <option disabled>―― 水中 ――</option>
+    <option value="axolotl">ウーパールーパー</option>
+    <option value="dolphin">イルカ</option>
+    <option value="turtle">カメ</option>
+    <option value="pufferfish">フグ</option>
+    <option value="salmon">サケ</option>
+    <option value="cod">タラ</option>
+    <option value="tropical_fish">熱帯魚</option>
 
-<!-- ネザー -->
-<option disabled>―― ネザー ――</option>
-<option value="strider">ストライダー</option>
+    <!-- ネザー -->
+    <option disabled>―― ネザー ――</option>
+    <option value="strider">ストライダー</option>
 
-<!-- その他 -->
-<option disabled>―― その他 ――</option>
-<option value="parrot">オウム</option>
-<option value="frog">カエル</option>
-<option value="tadpole">オタマジャクシ</option>
-<option value="bee">蜂</option>
-<option value="snow_golem">スノーゴーレム</option>
-<option value="wandering_trader">行商人</option>
-<option value="trader_llama">行商人のラマ</option>
-
+    <!-- その他 -->
+    <option disabled>―― その他 ――</option>
+    <option value="parrot">オウム</option>
+    <option value="frog">カエル</option>
+    <option value="tadpole">オタマジャクシ</option>
+    <option value="bee">蜂</option>
+    <option value="snow_golem">スノーゴーレム</option>
+    <option value="wandering_trader">行商人</option>
+    <option value="trader_llama">行商人のラマ</option>
   </select>
 
   <button class="button" onclick="generateFriendly()">コマンドを生成</button>
@@ -175,16 +159,19 @@
 <script>
 function generateFriendly() {
   const mob = document.getElementById("mobSelect").value;
+  let cmd = "";
+
   if (!mob) {
     document.getElementById("output").textContent = "MOBを選択してください。";
     return;
   }
 
- if (mob === "tame_wolf") {
+  if (mob === "tame_wolf") {
     cmd = `execute as @p at @p run summon wolf ~ ~ ~ {variant:ashen,Owner:"{playername}",CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
   } else {
+    cmd = `execute at @p run summon ${mob} ~ ~2 ~2 {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+  }
 
-  const cmd = `execute at @p run summon ${mob} ~ ~2 ~2 {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
   document.getElementById("output").textContent = cmd;
 }
 
@@ -205,7 +192,3 @@ function copyCommand() {
 
 </body>
 </html>
-
-
-
-
