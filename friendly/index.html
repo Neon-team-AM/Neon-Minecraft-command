@@ -100,20 +100,18 @@
   <label>召喚するMOBを選択：</label>
   <select id="mobSelect">
     <option value="">選択してください</option>
-
-    <!-- オーバーワールド -->
-    <option disabled>―― オーバーワールド ――</option>
     <option value="allay">アレイ</option>
     <option value="armadillo">アルマジロ</option>
     <option value="cow">牛</option>
     <option value="wolf">オオカミ</option>
     <option value="tame_wolf">懐いているオオカミ</option>
+    <option value="cat">猫</option>
+    <option value="tame_cat">懐いている猫</option>
     <option value="chicken">ニワトリ</option>
     <option value="horse">馬</option>
     <option value="donkey">ロバ</option>
     <option value="llama">ラマ</option>
     <option value="fox">キツネ</option>
-    <option value="cat">猫</option>
     <option value="sheep">羊</option>
     <option value="pig">豚</option>
     <option value="goat">ヤギ</option>
@@ -122,9 +120,6 @@
     <option value="panda">パンダ</option>
     <option value="mooshroom">ムーシュルーム</option>
     <option value="sniffer">スニッファー</option>
-
-    <!-- 水中 -->
-    <option disabled>―― 水中 ――</option>
     <option value="axolotl">ウーパールーパー</option>
     <option value="dolphin">イルカ</option>
     <option value="turtle">カメ</option>
@@ -132,13 +127,7 @@
     <option value="salmon">サケ</option>
     <option value="cod">タラ</option>
     <option value="tropical_fish">熱帯魚</option>
-
-    <!-- ネザー -->
-    <option disabled>―― ネザー ――</option>
     <option value="strider">ストライダー</option>
-
-    <!-- その他 -->
-    <option disabled>―― その他 ――</option>
     <option value="parrot">オウム</option>
     <option value="frog">カエル</option>
     <option value="tadpole">オタマジャクシ</option>
@@ -146,6 +135,12 @@
     <option value="snow_golem">スノーゴーレム</option>
     <option value="wandering_trader">行商人</option>
     <option value="trader_llama">行商人のラマ</option>
+    <option value="iron_golem">アイアンゴーレム</option>
+    <option value="squid">イカ</option>
+    <option value="polar_bear">シロクマ</option>
+    <option value="baby_polar_bear">シロクマ（子供）</option>
+    <option value="glow_squid">ヒカリイカ</option>
+    <option value="ocelot">ヤマネコ</option>
   </select>
 
   <button class="button" onclick="generateFriendly()">コマンドを生成</button>
@@ -168,8 +163,14 @@ function generateFriendly() {
 
   if (mob === "tame_wolf") {
     cmd = `execute as @p at @p run summon wolf ~ ~ ~ {variant:ashen,Owner:"{playername}",CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+  } else if (mob === "tame_cat") {
+    cmd = `execute as @p at @p run summon cat ~ ~ ~ {Owner:"{playername}",CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+  } else if (mob === "iron_golem") {
+    cmd = `execute at @p run summon iron_golem ~ ~2 ~4 {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+  } else if (mob === "baby_polar_bear") {
+    cmd = `execute at @p run summon polar_bear ~ ~2 ~4 {Age:-24000,CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
   } else {
-    cmd = `execute at @p run summon ${mob} ~ ~2 ~2 {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
+    cmd = `execute at @p run summon ${mob} ~ ~2 ~4 {CustomName:'{"text":"{nickname}"}',PersistenceRequired:1,CustomNameVisible:1}`;
   }
 
   document.getElementById("output").textContent = cmd;
